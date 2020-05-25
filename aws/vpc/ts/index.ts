@@ -28,8 +28,9 @@ async function main() {
             s3: true,
         },
         baseTags: {
-            Project: project,
+            Project: `@jaxxstorm/${project}`,
             Stack: stackName,
+            Owner: 'lbriggs',
         },
     });
 
