@@ -7,7 +7,10 @@ async function main() {
 
 
     const config = new pulumi.Config();
-    const azCount = config.getNumber("azCount") || 1;
+    const azCount = config.getNumber('azCount') || 1;
+
+    const project = pulumi.getProject()
+    const stackName = pulumi.getStack()
 
     // Look up available zones in the target region
     const availabilityZones = await aws.getAvailabilityZones({
@@ -16,21 +19,22 @@ async function main() {
 
     // Create VPC. Subnets are distributed across the availability zones
     // obtained from the call above.
-    const vpc = new v.Vpc("lbriggs-vpc", {
-        description: "lbriggs-vpc",
-        baseCidr: "192.168.0.0/16",
+    const vpc = new v.Vpc('lbriggs-vpc', {
+        description: 'lbriggs',
+        baseCidr: '192.168.0.0/16',
         availabilityZoneNames: availabilityZones.names.slice(0, azCount),
         endpoints: {
             dynamodb: true,
             s3: true,
         },
         baseTags: {
-            Project: "lbriggs-vpc",
+            Project: project,
+            Stack: stackName,
         },
     });
 
     // Enable VPC flow logging to CloudWatch Logs for all traffic in the VPC.
-    vpc.enableFlowLoggingToCloudWatchLogs("ALL");
+    vpc.enableFlowLoggingToCloudWatchLogs('ALL');
 
     return {
         vpcId: vpc.vpcId(),
