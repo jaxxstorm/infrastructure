@@ -32,6 +32,7 @@ async function main() {
             Stack: stackName,
             Owner: 'lbriggs',
         },
+        enableNatGateway: false,
     });
 
     // Enable VPC flow logging to CloudWatch Logs for all traffic in the VPC.
@@ -41,6 +42,7 @@ async function main() {
         vpcId: vpc.vpcId(),
         publicSubnetIds: vpc.publicSubnetIds(),
         privateSubnetIds: vpc.privateSubnetIds(),
+        privateRouteTableIds: vpc.privateRouteTableIds(),
     }
 }
 
