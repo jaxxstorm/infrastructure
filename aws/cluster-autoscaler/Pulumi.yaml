@@ -1,0 +1,6 @@
+name: cluster-autoscaler
+runtime: 
+  name: go
+  options:
+    binary: cluster-autoscaler
+description: Install the Cluster Autoscaler on an EKS cluster

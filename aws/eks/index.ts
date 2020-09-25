@@ -13,10 +13,10 @@ const publicSubnets = vpc.getOutput("publicSubnets")
 
 // Define the AWS provider credential opts to configure the cluster's
 // kubeconfig auth.
-const kubeconfigOpts: eks.KubeconfigOptions = {profileName: "personal"};
+// const kubeconfigOpts: eks.KubeconfigOptions = {profileName: "personal"};
 
 const cluster = new eks.Cluster(name, {
-    providerCredentialOpts: kubeconfigOpts,
+    // providerCredentialOpts: kubeconfigOpts,
     name: name,
     vpcId: vpcId,
     privateSubnetIds: privateSubnets,
