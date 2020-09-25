@@ -1,2 +1,3 @@
 config:
+  aws-vpc:cidrBlock: 10.0.0.0/16
   aws:region: us-west-2
