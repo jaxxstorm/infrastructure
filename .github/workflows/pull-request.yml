@@ -1,0 +1,46 @@
+name: Preview Pulumi Changes
+on:
+  pull_request:
+    branches:
+      - master
+
+env:
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+  pulumi:
+    name: Pulumi
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+        matrix:
+          stack: [ "dev", "prod" ]
+    steps:
+      - name: Turnstyle
+        if: ${{ github.event_name == 'push' }}
+        uses: softprops/turnstyle@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+      - name: Install Pulumi CLI
+        uses: pulumi/action-install-pulumi-cli@releases/v1
+      - name: Restore npm dependencies
+        run: |
+          npm --prefix aws/accounts ci
+      - name: Pulumi Preview
+        uses: docker://pulumi/actions
+        with:
+          args: preview -s ${{ matrix.stack }}

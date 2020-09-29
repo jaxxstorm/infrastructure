@@ -19,6 +19,5 @@ const org = new aws.organizations.Organization(`master`, {
 
 
 export const orgId = org.masterAccountId
-export const parentId = org.
 
 
