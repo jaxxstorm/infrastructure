@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
-        matrix:
-          stack: [ "dev", "prod" ]
+      matrix:
+        stack: [ "dev", "prod" ]
     steps:
       - name: Turnstyle
         if: ${{ github.event_name == 'push' }}
