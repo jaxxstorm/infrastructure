@@ -45,4 +45,5 @@ jobs:
         with:
           args: preview -s ${{ matrix.stack }}
         env:
-          PULUMI_WORKING_DIRECTORY: "aws/accounts"
+          PULUMI_ROOT: "aws/accounts"
+          PULUMI_CI: pr
