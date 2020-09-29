@@ -1,0 +1,4 @@
+config:
+  aws-accounts:accountName: lbrlabs
+  aws-accounts:domainName: lbrlabs.com
+  aws:region: us-west-2

@@ -1,4 +1,0 @@
-config:
-  aws:region: us-west-2
-  clusterautoscaler:oidcArn: arn:aws:iam::609316800003:oidc-provider/oidc.eks.us-west-2.amazonaws.com/id/3E3C99EA6EBAC84047C8BE80D1D8EA10
-  clusterautoscaler:oidcUrl: https://oidc.eks.us-west-2.amazonaws.com/id/3E3C99EA6EBAC84047C8BE80D1D8EA10

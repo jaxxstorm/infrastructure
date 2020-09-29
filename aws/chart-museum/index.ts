@@ -9,6 +9,12 @@ const cluster = new pulumi.StackReference(`jaxxstorm/eks/${stack}`);
 // get the provider from the cluster
 const provider = new k8s.Provider("k8s", { kubeconfig: cluster.getOutput("kubeconfig") });
 
+const cm = new cx.ChartMuseum("foo", {
+    service: {
+        type: "LoadBalancer"
+    }
+})
+
 const chartmuseum = new cx.ChartMuseum(name, {
     service: {
         type: "LoadBalancer"
