@@ -10,9 +10,9 @@ let domainName = config.require("domainName")
 const name = `${accountName}-${stack}`
 
 const account = new aws.organizations.Account(name, {
-        name: name,
-        email: `${name}@${domainName}`,
-        roleName: "lbrlabsAdministrator",
+    name: name,
+    email: `${name}@${domainName}`,
+    roleName: "lbrlabsAdministrator",
 }, {
     ignoreChanges: ["roleName"],
 })
