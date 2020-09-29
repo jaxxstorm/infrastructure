@@ -44,3 +44,5 @@ jobs:
         uses: docker://pulumi/actions
         with:
           args: preview -s ${{ matrix.stack }}
+        env:
+          PULUMI_WORKING_DIRECTORY: "aws/accounts"
