@@ -1,3 +1,0 @@
-name: aws-accounts
-runtime: nodejs
-description: Define AWS accounts with Pulumi

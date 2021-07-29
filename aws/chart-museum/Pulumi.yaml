@@ -1,3 +1,0 @@
-name: chart-museum
-runtime: nodejs
-description: Install ChartMuseum on a Kubernetes Cluster

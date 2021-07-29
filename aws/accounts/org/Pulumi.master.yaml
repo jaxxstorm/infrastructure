@@ -1,3 +1,0 @@
-config:
-  aws-org:accountName: lbrlabs
-  aws:region: us-west-2

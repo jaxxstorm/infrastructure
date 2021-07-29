@@ -1,0 +1,3 @@
+name: infra_eks_cluster
+runtime: nodejs
+description: A minimal AWS TypeScript Pulumi program

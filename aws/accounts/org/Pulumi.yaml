@@ -1,3 +1,0 @@
-name: aws-org
-runtime: nodejs
-description: The master account in an AWS organization

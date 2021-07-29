@@ -1,5 +1,0 @@
-autoDiscovery:
-  clusterName: "test"
-rbac:
-  serviceAccount:
-    "foo": "bar"
