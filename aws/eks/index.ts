@@ -22,6 +22,9 @@ const cluster = new eks.Cluster(name, {
     privateSubnetIds: privateSubnets,
     publicSubnetIds: publicSubnets,
     createOidcProvider: true,
+    tags: {
+        Owner: "lbriggs"
+    }
 })
 
 export const clusterName = cluster.eksCluster.name

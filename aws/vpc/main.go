@@ -23,7 +23,7 @@ func main() {
 		 */
 		awsVpc, err := vpc.NewVpc(ctx, fmt.Sprintf("lbriggs-%s", stack), vpc.Args{
 			BaseCidr:    cidr,
-			Description: fmt.Sprintf("lbriggs-%s-vpc", stack),
+			Description: fmt.Sprintf("lbriggs-%s", stack),
 			ZoneName:    pulumi.String(fmt.Sprintf("%s.aws.lbrlabs.com", stack)),
 			AvailabilityZoneNames: pulumi.StringArray{ // FIXME: use getAvailabilityZones here
 				pulumi.String(fmt.Sprintf("%sa", region)),
@@ -31,7 +31,7 @@ func main() {
 				pulumi.String(fmt.Sprintf("%sc", region)),
 			},
 			BaseTags: pulumi.StringMap{
-				"Owner":                         pulumi.String(fmt.Sprintf("lbriggs-%s", stack)),
+				"Owner":                         pulumi.String(fmt.Sprintf("lbriggs", stack)),
 				fmt.Sprintf("kubernetes.io/cluster/lbriggs-%s", stack): pulumi.String("shared"),
 			},
 			Endpoints: vpc.Endpoints{
