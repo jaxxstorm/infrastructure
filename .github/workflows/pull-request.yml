@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
-        matrix:
-          stack: [ "dev", "prod" ]
+      matrix:
+        stack: [ "dev", "prod" ]
     steps:
       - name: Turnstyle
         if: ${{ github.event_name == 'push' }}
@@ -44,3 +44,6 @@ jobs:
         uses: docker://pulumi/actions
         with:
           args: preview -s ${{ matrix.stack }}
+        env:
+          PULUMI_ROOT: "aws/accounts"
+          PULUMI_CI: pr
